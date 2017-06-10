@@ -1,0 +1,37 @@
+version: '2'
+volumes:
+  ember:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+      o: size=2500m,uid=1000
+
+services:
+  ember:
+    build:
+      context: ./ember-cli
+    volumes:
+      - ember:/apps
+    ports:
+      - "4200:4200"
+      - "49152:49152"
+      - "5858:5858"
+    working_dir: /apps
+    environment:
+      - NODE_DEBUG=1
+      - DEBUG=*,-babel*,-eslint*,-async-disk-cache*,-express*
+      #- APP_FOLDER=<your-/volumes/ember/-subfolder>
+    tmpfs:
+      - /tmp
+    #extra_hosts:
+    #  - "<your-api-server:<external-vm-ip-address>"
+    tty: true
+  sshd:
+    build:
+      context: ./sshd
+    restart: "unless-stopped"
+    ports:
+      - "2222:22"
+    volumes:
+      - embercli_ember:/volumes/ember
+    tty: true
