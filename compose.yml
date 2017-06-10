@@ -33,5 +33,5 @@ services:
     ports:
       - "2222:22"
     volumes:
-      - embercli_ember:/volumes/ember
+      - ember:/volumes/ember
     tty: true
