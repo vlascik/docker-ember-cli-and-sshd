@@ -1,7 +1,7 @@
 # taken from https://github.com/macropin/docker-sshd
 FROM alpine:latest
 
-MAINTAINER Vladimir Lascik <vlascik@gmail.com>
+MAINTAINER V. Lascik <vlascik@gmail.com>
 
 ENV TERM=xterm
 
