@@ -11,7 +11,7 @@ ENV TERM=xterm
 #RUN sysctl fs.inotify.max_user_watches=524288
 
 RUN \
-	npm install -g ember-cli@4.9.2
+	npm install -g ember-cli
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yq install \
   python-dev &&\
