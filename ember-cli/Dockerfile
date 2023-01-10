@@ -1,8 +1,4 @@
-#FROM node:7-alpine
-# alpine has trouble compiling watchman (no glibc), can be added by buildpack, but then the container is bigger than ubuntu
-#build libc env: https://github.com/praekeltfoundation/alpine-buildpack-deps/blob/develop/slim/Dockerfile
-
-FROM node:7
+FROM node:18
 MAINTAINER Dan Lynn <docker@danlynn.org>
 
 # ember server on port 4200, livereload server on port 49152, debug on 5858
@@ -15,9 +11,7 @@ ENV TERM=xterm
 #RUN sysctl fs.inotify.max_user_watches=524288
 
 RUN \
-	npm install -g ember-cli@2.14.0-beta.2 &&\
-	npm install -g bower &&\
-	npm install -g phantomjs
+	npm install -g ember-cli@4.9.2
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yq install \
   python-dev &&\
@@ -27,7 +21,6 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -yq install \
 RUN \
 	git clone https://github.com/facebook/watchman.git &&\
 	cd watchman &&\
-	#git checkout v3.5.0 &&\
 	git checkout v4.7.0 &&\
 	./autogen.sh &&\
 	./configure &&\
