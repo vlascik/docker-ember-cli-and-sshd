@@ -2,7 +2,7 @@ FROM node:18
 MAINTAINER Dan Lynn <docker@danlynn.org>
 
 # ember server on port 4200, livereload server on port 49152, debug on 5858
-EXPOSE 4200 49152 5858
+EXPOSE 4200 49152 9229
 WORKDIR /apps
 
 ENV TERM=xterm
