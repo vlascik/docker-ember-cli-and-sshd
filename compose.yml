@@ -1,10 +1,6 @@
 version: '2'
 volumes:
   ember:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
-      o: size=2500m,uid=1000
 
 services:
   ember:
